@@ -9,7 +9,7 @@ const Dashboard = () => {
     let [category, setcategory] = useState([]);
     let [subcategory, setsubcategory] = useState([]);
     let [questions, setquestions] = useState([]);
-    let [loading, setLoading] = useState(true); // Loading state
+    let [loading, setLoading] = useState(true); 
     let token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false); // Stop loading when data is fetched
+                setLoading(false); 
             }
         }
         getdata();
@@ -45,19 +45,14 @@ const Dashboard = () => {
     return (
         <ThemeDash>
             <div>
-                {/* Dashboard Header */}
-
-                {/* Main Content */}
                 <Container className="mt-3">
                     <Row>
-                        {/* Check if loading is true, display spinner */}
                         {loading ? (
                             <Box display="flex" justifyContent="center" alignItems="center" sx={{ width: '100%', height: '60vh' }}>
                                 <CircularProgress />
                             </Box>
                         ) : (
                             <>
-                                {/* Category Box */}
                                 <Col md={4}>
                                     <Card className="shadow-sm">
                                         <Card.Body>
@@ -69,7 +64,6 @@ const Dashboard = () => {
                                     </Card>
                                 </Col>
 
-                                {/* Sub-category Box */}
                                 <Col md={4}>
                                     <Card className="shadow-sm">
                                         <Card.Body>
@@ -81,7 +75,6 @@ const Dashboard = () => {
                                     </Card>
                                 </Col>
 
-                                {/* Total Q/A Set Box */}
                                 <Col md={4}>
                                     <Card className="shadow-sm">
                                         <Card.Body>

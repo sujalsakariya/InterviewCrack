@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ const Signup = () => {
     },
     onSubmit: async (values) => {
       try {
-        // Perform signup action
         const { name, email, password } = values;
 
         if (password !== values.confirmPassword) {
@@ -31,7 +30,6 @@ const Signup = () => {
         );
         console.log(res.data);
 
-        // Redirect to the login page or home page
         navigate('/admin/login');
       } catch (error) {
         console.log(error);
@@ -62,8 +60,6 @@ const Signup = () => {
           <Typography variant="h4" sx={{ color: '#1976D2' }}>
             Signup
           </Typography>
-
-          {/* Name field */}
           <TextField
             id="name"
             fullWidth
@@ -73,8 +69,6 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-
-          {/* Email field */}
           <TextField
             id="email"
             fullWidth
@@ -84,8 +78,6 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-
-          {/* Password field */}
           <TextField
             id="password"
             fullWidth
@@ -96,8 +88,6 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-
-          {/* Confirm Password field */}
           <TextField
             id="confirmPassword"
             fullWidth
@@ -113,7 +103,7 @@ const Signup = () => {
             Signup
           </Button>
           <Box>
-            you have already an account   <Link to="/">Login</Link>  
+            you have already an account   <Link to="/">Login</Link>
           </Box>
         </Box>
       </form>

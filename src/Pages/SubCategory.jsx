@@ -22,7 +22,7 @@ const SubCategory = () => {
   const [categories, setCategories] = useState([]);
   const [eid, setEid] = useState(null);
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);  // Loading state
+  const [loading, setLoading] = useState(false);  
 
   const TableHeader = [
     "Index",
@@ -40,7 +40,7 @@ const SubCategory = () => {
     },
     onSubmit: async (values, { resetForm }) => {
       try {
-        setLoading(true);  // Start loading
+        setLoading(true); 
         const url = eid
           ? `https://interviewhub-3ro7.onrender.com/subcatagory/${eid}`
           : "https://interviewhub-3ro7.onrender.com/subcatagory/create";
@@ -65,7 +65,7 @@ const SubCategory = () => {
   });
 
   const dataFetch = async () => {
-    setLoading(true);  // Start loading
+    setLoading(true); 
     try {
       const res = await axios.get(
         "https://interviewhub-3ro7.onrender.com/subcatagory/",
@@ -140,7 +140,7 @@ const SubCategory = () => {
   };
 
   const deleteData = async (id) => {
-    setLoading(true);  // Start loading
+    setLoading(true); 
     try {
       const res = await axios.delete(
         `https://interviewhub-3ro7.onrender.com/subcatagory/${id}`,
@@ -154,7 +154,7 @@ const SubCategory = () => {
       toast.error("Failed to delete subcategory.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);  
     }
   };
 

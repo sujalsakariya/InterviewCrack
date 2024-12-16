@@ -9,7 +9,7 @@ import { GridLoader, HashLoader } from 'react-spinners';
 
 
 const Login = () => {
-  const [spinner , setspinner] = useState(false)
+  const [spinner, setspinner] = useState(false)
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -22,20 +22,19 @@ const Login = () => {
         let res = await axios.post("https://interviewhub-3ro7.onrender.com/admin/login", values)
         localStorage.setItem("token", res.data.token)
         navigate("/admin/")
-        // console.log(res.data.token); 
       } catch (error) {
         console.log(error);
       }
-      
+
     },
   });
   useEffect(() => {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       navigate('/admin/')
     }
-  },[])
+  }, [])
   return (
-    spinner?<Box sx={{width:'100%', height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}><Box><HashLoader color="#122dff" /></Box></Box>:<Box sx={{ width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    spinner ? <Box sx={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Box><HashLoader color="#122dff" /></Box></Box> : <Box sx={{ width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <form onSubmit={formik.handleSubmit}>
         <Box sx={{ width: '500px', border: '3px solid #1976D2', padding: '40px 30px', borderRadius: '20px' }} className="d-flex flex-column align-items-center gap-3">
 

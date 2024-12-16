@@ -21,7 +21,7 @@ const Category = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [eid, setEid] = useState(null);
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);  // Added loading state
+  const [loading, setLoading] = useState(false);  
 
   const TableHeader = ["Index", "Category Name", "Status", "Delete", "Update"];
 
@@ -29,7 +29,7 @@ const Category = () => {
     initialValues: { catagoryName: "" },
     onSubmit: async (values, { resetForm }) => {
       try {
-        setLoading(true);  // Start loading
+        setLoading(true);  
         const url = eid
           ? `https://interviewhub-3ro7.onrender.com/catagory/${eid}`
           : "https://interviewhub-3ro7.onrender.com/catagory/create";
@@ -48,14 +48,14 @@ const Category = () => {
         toast.error("An error occurred while processing your request.");
         console.error(error);
       } finally {
-        setLoading(false);  // Stop loading
+        setLoading(false);  
       }
     },
   });
 
   const dataFetch = async () => {
     try {
-      setLoading(true);  // Start loading
+      setLoading(true);  
       const res = await axios.get("https://interviewhub-3ro7.onrender.com/catagory/", {
         headers: { Authorization: token },
       });
@@ -65,7 +65,7 @@ const Category = () => {
       toast.error("Failed to fetch categories.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);  
     }
   };
 
@@ -81,7 +81,7 @@ const Category = () => {
     const updatedStatus = selectedData.status === "on" ? "off" : "on";
 
     try {
-      setLoading(true);  // Start loading
+      setLoading(true);  
       await axios.patch(
         `https://interviewhub-3ro7.onrender.com/catagory/${id}`,
         { status: updatedStatus },
@@ -92,13 +92,13 @@ const Category = () => {
       toast.error("Failed to update status.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);  
     }
   };
 
   const deleteData = async (id) => {
     try {
-      setLoading(true);  // Start loading
+      setLoading(true);  
       const res = await axios.delete(`https://interviewhub-3ro7.onrender.com/catagory/${id}`, {
         headers: { Authorization: token },
       });
@@ -108,7 +108,7 @@ const Category = () => {
       toast.error("Failed to delete category.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);  
     }
   };
 

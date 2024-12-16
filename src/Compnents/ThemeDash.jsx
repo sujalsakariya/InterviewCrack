@@ -45,7 +45,6 @@ let pages = [
 
 function ThemeDash(props) {
   const { window, children } = props;
-  // const [spinner, setspinner] = useState(true)
   const location = useLocation(); 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -90,16 +89,15 @@ function ThemeDash(props) {
 
   const drawer = (
     <div>
-      {/* Interview Portal Header inside the Drawer */}
       <Box
         sx={{
-          backgroundColor: "#1976D2", // Blue background
+          backgroundColor: "#1976D2", 
           padding: "17px",
           textAlign: "center",
           color: "white",
           fontWeight: "bold",
           fontSize: "20px",
-          marginBottom: "16px", // Space below the header
+          marginBottom: "16px", 
         }}
       >
         Interview Portal
@@ -108,7 +106,6 @@ function ThemeDash(props) {
       <Divider />
       <List>
         {pages.map((item, index) => {
-          // Check if the current path matches the item's path
           const isActive = location.pathname === item.path;
 
           return (
@@ -120,13 +117,12 @@ function ThemeDash(props) {
               <ListItem disablePadding>
                 <ListItemButton
                   sx={{
-                    // Apply background color when the item is active
                     backgroundColor: isActive ? "#1976D2" : "transparent",
                     margin: "10px",
                     borderRadius: "3px",
                     color: isActive ? "white" : "black",
                     "&:hover": {
-                      backgroundColor: isActive ? "#1976D2" : "lightgray", // hover effect for active item
+                      backgroundColor: isActive ? "#1976D2" : "lightgray", 
                     },
                   }}
                 >
@@ -147,11 +143,6 @@ function ThemeDash(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-  // if (spinner) {
-  //   return <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-  //   </div>
-  // }
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -172,12 +163,10 @@ function ThemeDash(props) {
           >
           </IconButton>
           <Typography variant="h6" noWrap component="div" className="w-100 d-flex justify-content-between align-items-center">
-            {getPageTitle(location.pathname)} {/* Display dynamic title */}
-            {/* <Link to="/"> */}
+            {getPageTitle(location.pathname)} 
             <Button onClick={Logout}>
               <MeetingRoom sx={{ color: "white", fontSize: "30px" }} />
             </Button>
-            {/* </Link> */}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -193,7 +182,7 @@ function ThemeDash(props) {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "none" },
