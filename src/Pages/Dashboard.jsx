@@ -10,7 +10,7 @@ const Dashboard = () => {
     let [subcategory, setsubcategory] = useState([]);
     let [questions, setquestions] = useState([]);
     let [loading, setLoading] = useState(true); 
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem("token"); 
 
     useEffect(() => {
         async function getdata() {
