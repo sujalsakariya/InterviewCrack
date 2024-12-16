@@ -59,7 +59,7 @@ const SubCategory = () => {
         toast.error("An error occurred.");
         console.error(error);
       } finally {
-        setLoading(false);  // Stop loading
+        setLoading(false); 
       }
     },
   });
@@ -79,12 +79,12 @@ const SubCategory = () => {
       toast.error("Failed to fetch subcategories.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false); 
     }
   };
 
   const fetchCategories = async () => {
-    setLoading(true);  // Start loading
+    setLoading(true);  
     try {
       const res = await axios.get(
         "https://interviewhub-3ro7.onrender.com/catagory/",
@@ -97,7 +97,7 @@ const SubCategory = () => {
       toast.error("Failed to fetch categories.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false);  
     }
   };
 
@@ -123,7 +123,7 @@ const SubCategory = () => {
     const selectedData = subcategory.find((item) => item._id === id);
     const updatedStatus = selectedData.status === "on" ? "off" : "on";
 
-    setLoading(true);  // Start loading
+    setLoading(true); 
     try {
       await axios.patch(
         `https://interviewhub-3ro7.onrender.com/catagory/${id}`,
@@ -135,7 +135,7 @@ const SubCategory = () => {
       toast.error("Failed to update status.");
       console.error(error);
     } finally {
-      setLoading(false);  // Stop loading
+      setLoading(false); 
     }
   };
 

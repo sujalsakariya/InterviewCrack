@@ -12,7 +12,6 @@ import QA from './Pages/QA';
 
 const App = () => {
   return (
-    // <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />}></Route>
         <Route path="/signup" element={<Signup />} />
@@ -21,7 +20,6 @@ const App = () => {
         <Route path='/admin/subcategory' element={<SubCategory />}></Route>
         <Route path='/admin/qa' element={<QA />}></Route>
       </Routes>
-    // </BrowserRouter> 
   )
 }
 

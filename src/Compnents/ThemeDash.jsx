@@ -18,8 +18,6 @@ import CategoryIcon from "@mui/icons-material/Category";
 import { FolderCopy, MeetingRoom, QuestionMark } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
-import { GridLoader, HashLoader } from "react-spinners";
-import { Spinner } from "react-bootstrap";
 
 const drawerWidth = 240;
 let pages = [
@@ -47,7 +45,7 @@ let pages = [
 
 function ThemeDash(props) {
   const { window, children } = props;
-  const [spinner, setspinner] = useState(true)
+  // const [spinner, setspinner] = useState(true)
   const location = useLocation(); 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -86,10 +84,8 @@ function ThemeDash(props) {
     } catch (error) {
       console.log(error);
 
-    } finally {
-      setspinner(false)
-    }
-  }, [])
+    } 
+  })
 
 
   const drawer = (
@@ -151,11 +147,10 @@ function ThemeDash(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-  if (spinner) {
-    return <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div><HashLoader color="#122dff" /></div>
-    </div>
-  }
+  // if (spinner) {
+  //   return <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  //   </div>
+  // }
 
   return (
     <Box sx={{ display: "flex" }}>

@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Box, Switch, TableCell, MenuItem, Select, InputLabel, FormControl, CircularProgress } from "@mui/material";
+import { Box, TableCell, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import TextField from "../Compnents/TextField";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -22,7 +22,6 @@ const QA = () => {
     const [qa, setqa] = useState([]);
     const [eid, setEid] = useState(null);
     const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);  // Loading state
 
     const TableHeader = [
         "No",
@@ -42,7 +41,6 @@ const QA = () => {
         },
         onSubmit: async (values, { resetForm }) => {
             try {
-                setLoading(true);  // Start loading
                 const url = eid
                     ? `https://interviewhub-3ro7.onrender.com/questions/${eid}`
                     : "https://interviewhub-3ro7.onrender.com/questions/create";
@@ -60,15 +58,12 @@ const QA = () => {
             } catch (error) {
                 toast.error("An error occurred.");
                 console.error(error);
-            } finally {
-                setLoading(false); 
             }
         },
     });
 
     const dataFetch = async () => {
         try {
-            setLoading(true);  // Start loading
             const res = await axios.get(
                 "https://interviewhub-3ro7.onrender.com/questions/",
                 {
@@ -79,15 +74,11 @@ const QA = () => {
             setfilterqa(res.data.data);
         } catch (error) {
             toast.error("Failed to fetch subcategories.");
-            // console.error(error);
-        } finally {
-            setLoading(false);  
         }
     };
 
     const fetchSubCategories = async () => {
         try {
-            setLoading(true);  // Start loading
             const res = await axios.get(
                 "https://interviewhub-3ro7.onrender.com/subcatagory/",
                 {
@@ -97,9 +88,6 @@ const QA = () => {
             setqa(res.data.data);
         } catch (error) {
             toast.error("Failed to fetch categories.");
-            // console.error(error);
-        } finally {
-            setLoading(false);  // End loading
         }
     };
 
@@ -122,7 +110,6 @@ const QA = () => {
 
     const deleteData = async (id) => {
         try {
-            setLoading(true); 
             const res = await axios.delete(
                 `https://interviewhub-3ro7.onrender.com/questions/${id}`,
                 {
@@ -133,9 +120,6 @@ const QA = () => {
             dataFetch();
         } catch (error) {
             toast.error("Failed to delete Question.");
-            // console.error(error);
-        } finally {
-            setLoading(false);  // End loading
         }
     };
 
@@ -148,7 +132,7 @@ const QA = () => {
     useEffect(() => {
         dataFetch();
         fetchSubCategories();
-    }, []);
+    });
 
     return (
         <ThemeDash>
@@ -167,35 +151,29 @@ const QA = () => {
                 </React.Fragment>
             </Box>
             <Box sx={{ width: "100%" }}>
-                {loading ? (
-                    <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-                        <CircularProgress />
-                    </Box>
-                ) : (
-                    <TableComponent
-                        TableHeader={TableHeader}
-                        TableData={filterqa}
-                        renderRow={(row, index) => (
-                            <>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>{row.questions}</TableCell>
-                                <TableCell>{row.answer}</TableCell>
-                                <TableCell>{row.subcatagoryID?.subCatagoryname}</TableCell>
-                                <TableCell>{row.subcatagoryID?.catagoryID.catagoryName}</TableCell>
-                                <TableCell align="left">
-                                    <Button onClick={() => deleteData(row._id)}>
-                                        <DeleteRoundedIcon className="text-danger" />
-                                    </Button>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <Button onClick={() => updateData(row._id)}>
-                                        <BorderColorRoundedIcon className="text-success" />
-                                    </Button>
-                                </TableCell>
-                            </>
-                        )}
-                    />
-                )}
+                <TableComponent
+                    TableHeader={TableHeader}
+                    TableData={filterqa}
+                    renderRow={(row, index) => (
+                        <>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>{row.questions}</TableCell>
+                            <TableCell>{row.answer}</TableCell>
+                            <TableCell>{row.subcatagoryID?.subCatagoryname}</TableCell>
+                            <TableCell>{row.subcatagoryID?.catagoryID.catagoryName}</TableCell>
+                            <TableCell align="left">
+                                <Button onClick={() => deleteData(row._id)}>
+                                    <DeleteRoundedIcon className="text-danger" />
+                                </Button>
+                            </TableCell>
+                            <TableCell align="left">
+                                <Button onClick={() => updateData(row._id)}>
+                                    <BorderColorRoundedIcon className="text-success" />
+                                </Button>
+                            </TableCell>
+                        </>
+                    )}
+                />
             </Box>
 
             <Dialog open={open} onClose={handleClose}>

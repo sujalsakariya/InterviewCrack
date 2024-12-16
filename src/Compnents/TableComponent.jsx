@@ -25,7 +25,7 @@ const TableComponent = ({ TableHeader, TableData, renderRow }) => {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow sx={{backgroundColor:'#1976D2'}}>
+          <TableRow sx={{ backgroundColor: '#1976D2' }}>
             {TableHeader.map((el, i) => {
               return <TableCell key={el} className="text-white">{el}</TableCell>;
             })}
@@ -37,7 +37,7 @@ const TableComponent = ({ TableHeader, TableData, renderRow }) => {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              {renderRow(row,index)}
+              {renderRow(row, index)}
             </TableRow>
           ))}
         </TableBody>
