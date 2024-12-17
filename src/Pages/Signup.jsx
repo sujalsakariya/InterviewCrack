@@ -30,7 +30,7 @@ const Signup = () => {
         );
         console.log(res.data);
 
-        navigate('/admin/login');
+        navigate('/');
       } catch (error) {
         console.log(error);
       }
